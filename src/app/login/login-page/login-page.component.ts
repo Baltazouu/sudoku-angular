@@ -7,6 +7,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angula
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-login-page',
@@ -30,6 +31,9 @@ import { MatInputModule } from '@angular/material/input';
 })
 export class LoginPageComponent {
 
+  constructor(private router: Router) {
+  }
+
   loginForm: FormGroup = new FormGroup({
     email: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required)
@@ -47,5 +51,7 @@ export class LoginPageComponent {
       this.loginForm.markAllAsTouched();
       return;
     }
+    localStorage.setItem('login', this.loginForm.get('login')?.value)
+    return this.router.navigateByUrl('')
   }
 }
