@@ -41,9 +41,8 @@ export class LoginPageComponent {
     event.stopPropagation();
   }
 
-
   onSubmit() {
-    console.log("submit clicked")
+    console.log(this.loginForm.value);
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
       return;

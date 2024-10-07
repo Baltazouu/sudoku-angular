@@ -1,5 +1,6 @@
 .login-wrapper {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -13,19 +14,13 @@
     max-width: 400px;
 }
 
-.example-container mat-form-field+mat-form-field {
-    margin-left: 8px;
+.buttonhidepassword {
+    outline: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
 }
 
-.example-right-align {
-    text-align: right;
-}
-
-input.example-right-align::-webkit-outer-spin-button,
-input.example-right-align::-webkit-inner-spin-button {
-    display: none;
-}
-
-input.example-right-align {
-    -moz-appearance: textfield;
+.buttonform {
+    border-radius: 5px;
 }

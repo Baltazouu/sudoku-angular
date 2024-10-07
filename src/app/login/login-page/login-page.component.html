@@ -1,29 +1,34 @@
 <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <h2>Connexion</h2>
   <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-
     <mat-form-field appearance="outline">
       <mat-label>Fill form field</mat-label>
-      <input matInput placeholder="Placeholder">
-      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <input class="form-input" matInput placeholder="Placeholder" formControlName="email" />
+      <mat-icon matSuffix>email</mat-icon>
     </mat-form-field>
-    @if (loginForm.get('email')?.hasError('required') && loginForm.get('email')?.touched) {
-    <mat-error>
-      Please enter your email
-    </mat-error>
+    @if (loginForm.hasError('email') && !loginForm.hasError('required')) {
+    <mat-error>Please enter a valid email address</mat-error>
+    }
+    @if (loginForm.hasError('required')) {
+    <mat-error>Email is <strong>required</strong></mat-error>
     }
     <mat-form-field appearance="outline">
       <mat-label>Enter your password</mat-label>
-      <input matInput [type]="hide() ? 'password' : 'text'" />
+      <input class="form-input" matInput [type]="hide() ? 'password' : 'text'" formControlName="password" />
       <button class="buttonhidepassword" mat-icon-button matSuffix (click)="clickEvent($event)"
         [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide()">
         <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
+      <mat-icon matSuffix>lock</mat-icon>
     </mat-form-field>
-    @if (loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched) {
-    <mat-error>
-      Please enter your password
-    </mat-error>
+    @if (loginForm.hasError('password') && !loginForm.hasError('required')) {
+    <mat-error>Please enter a valid password</mat-error>
     }
-    <button type="submit" mat-raised-button>Se connecter</button>
+    @if (loginForm.hasError('required')) {
+    <mat-error>Password is <strong>required</strong></mat-error>
+    }
+    <button class="buttonform" type="submit" mat-flat-button [disabled]='loginForm.invalid'>
+      Se connecter
+    </button>
   </form>
 </div>
