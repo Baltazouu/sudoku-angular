@@ -1,24 +1,29 @@
 <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
-    <mat-form-field>
-      <input matInput placeholder="Email" formControlName="email">
+    <mat-form-field appearance="outline">
+      <mat-label>Fill form field</mat-label>
+      <input matInput placeholder="Placeholder">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
     </mat-form-field>
-    @if (loginForm.get('email')?.hasError('required')) {
-      <mat-error>
-        Please enter your email
-      </mat-error>
+    @if (loginForm.get('email')?.hasError('required') && loginForm.get('email')?.touched) {
+    <mat-error>
+      Please enter your email
+    </mat-error>
     }
-    <br>
-    <mat-form-field>
-      <input matInput placeholder="Mot de passe" formControlName="password" type="password">
+    <mat-form-field appearance="outline">
+      <mat-label>Enter your password</mat-label>
+      <input matInput [type]="hide() ? 'password' : 'text'" />
+      <button class="buttonhidepassword" mat-icon-button matSuffix (click)="clickEvent($event)"
+        [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide()">
+        <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
     </mat-form-field>
-    @if (loginForm.get('password')?.hasError('required')) {
-      <mat-error>
-        Please enter your password
-      </mat-error>
+    @if (loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched) {
+    <mat-error>
+      Please enter your password
+    </mat-error>
     }
-    <br>
-    <button type="submit" mat-stroked-button>Basic</button>
+    <button type="submit" mat-raised-button>Se connecter</button>
   </form>
 </div>
