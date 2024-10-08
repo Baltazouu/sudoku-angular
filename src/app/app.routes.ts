@@ -9,7 +9,7 @@ export const routes: Routes = [
 
   {path:'', component:HomePageComponent, canActivate: [AuthGuard] },
   {path:'login', component:LoginPageComponent},
-  {path:'rankings', component: RankingPageComponent},
+  {path:'rankings', component: RankingPageComponent, canActivate: [AuthGuard]},
   {path:'**', component:NotFoundPageComponent},
 
 ];
