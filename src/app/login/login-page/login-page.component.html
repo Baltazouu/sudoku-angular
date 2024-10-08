@@ -1,33 +1,32 @@
 <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
-  <h2>Connexion</h2>
+  <h3>Connexion</h3>
   <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <mat-form-field appearance="outline">
-      <mat-label>Fill form field</mat-label>
-      <input class="form-input" matInput placeholder="Placeholder" formControlName="email" />
+      <mat-label>Email</mat-label>
+      <input class="form-input" type="email" matInput placeholder="Placeholder" formControlName="email" />
       <mat-icon matSuffix>email</mat-icon>
+      @if (loginForm.hasError('email') && !loginForm.hasError('required')) {
+      <mat-error>Please enter a valid email address</mat-error>
+      }
+      @if (loginForm.hasError('required')) {
+      <mat-error>Email is <strong>required</strong></mat-error>
+      }
     </mat-form-field>
-    @if (loginForm.hasError('email') && !loginForm.hasError('required')) {
-    <mat-error>Please enter a valid email address</mat-error>
-    }
-    @if (loginForm.hasError('required')) {
-    <mat-error>Email is <strong>required</strong></mat-error>
-    }
     <mat-form-field appearance="outline">
-      <mat-label>Enter your password</mat-label>
-      <input class="form-input" matInput [type]="hide() ? 'password' : 'text'" formControlName="password" />
-      <button class="buttonhidepassword" mat-icon-button matSuffix (click)="clickEvent($event)"
-        [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide()">
-        <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <mat-label>Password</mat-label>
+      <input class="form-input" matInput [type]="isPasswordHided ? 'password' : 'text'" formControlName="password" />
+      <button class="buttonhidepassword" mat-icon-button matSuffix type="button" (click)="hidePassword()">
+        <mat-icon>{{isPasswordHided ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
       <mat-icon matSuffix>lock</mat-icon>
+      @if (loginForm.hasError('password') && !loginForm.hasError('required')) {
+      <mat-error>Please enter a valid password</mat-error>
+      }
+      @if (loginForm.hasError('required')) {
+      <mat-error>Password is <strong>required</strong></mat-error>
+      }
     </mat-form-field>
-    @if (loginForm.hasError('password') && !loginForm.hasError('required')) {
-    <mat-error>Please enter a valid password</mat-error>
-    }
-    @if (loginForm.hasError('required')) {
-    <mat-error>Password is <strong>required</strong></mat-error>
-    }
-    <button class="buttonform" type="submit" mat-flat-button [disabled]='loginForm.invalid'>
+    <button class=" buttonform" type="submit" mat-flat-button [disabled]='loginForm.invalid'>
       Se connecter
     </button>
   </form>

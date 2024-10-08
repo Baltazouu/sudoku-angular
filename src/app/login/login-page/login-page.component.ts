@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatCard, MatCardContent, MatCardHeader, MatCardTitle } from "@angular/material/card";
 import { MatError, MatFormField } from "@angular/material/form-field";
 import { MatButton } from "@angular/material/button";
@@ -31,18 +31,18 @@ import { Router } from "@angular/router";
 })
 export class LoginPageComponent {
 
+  isPasswordHided: boolean = true;
+
   constructor(private router: Router) {
   }
 
   loginForm: FormGroup = new FormGroup({
-    email: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required)
   })
 
-  hide = signal(true);
-  clickEvent(event: MouseEvent) {
-    this.hide.set(!this.hide());
-    event.stopPropagation();
+  hidePassword() {
+    this.isPasswordHided = !this.isPasswordHided;
   }
 
   onSubmit() {
