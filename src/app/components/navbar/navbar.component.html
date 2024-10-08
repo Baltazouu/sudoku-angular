@@ -1,3 +1,17 @@
-<div class="navbar">
-    <p>coucou</p>
-</div>
+<mat-toolbar id="navbar">
+  <div id="user_infos">
+    <mat-icon style="vertical-align: middle">account_circle</mat-icon>
+    <button mat-button style="vertical-align: middle" (click)="logout()">{{user?.login}}</button>
+  </div>
+
+  <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>Sudoku</button>
+    <button mat-menu-item disabled>Mot croisés</button>
+    <a routerLink="/rankings" mat-menu-item >Classement</a>
+    <button mat-menu-item (click)="logout()">Logout</button>
+  </mat-menu>
+
+
+</mat-toolbar>

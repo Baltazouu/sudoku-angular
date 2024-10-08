@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { Router } from "@angular/router";
+import {UserService} from "../service/user.service";
 
 @Component({
   selector: 'app-login-page',
@@ -34,11 +35,12 @@ export class LoginPageComponent {
 
   isPasswordHided: boolean = true;
 
-  constructor(private router: Router) {
+  constructor(private router: Router,
+              private userService: UserService) {
   }
 
   loginForm: FormGroup = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
+    login: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required)
   })
 
@@ -52,7 +54,11 @@ export class LoginPageComponent {
       this.loginForm.markAllAsTouched();
       return;
     }
-    localStorage.setItem('login', this.loginForm.get('login')?.value)
-    return this.router.navigateByUrl('')
+
+    if(this.userService.login(this.loginForm.value.login, this.loginForm.value.password)) {
+      return this.router.navigateByUrl('')
+    }
+    this.loginForm.setErrors({invalid_credentials: true});
+    return;
   }
 }
