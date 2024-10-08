@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {User} from "../../model/user.interface";
 import {
   MatCell, MatCellDef,
@@ -30,7 +30,7 @@ import {ViewChild} from '@angular/core';
   templateUrl: './user-table-rank.component.html',
   styleUrl: './user-table-rank.component.scss'
 })
-export class UserTableRankComponent implements OnInit {
+export class UserTableRankComponent implements OnInit, AfterViewInit {
 
   @Input({required:true}) users: User[] = [];
   displayedColumns: string[] = ['position', 'login', 'points', 'streak' ];
@@ -42,6 +42,10 @@ export class UserTableRankComponent implements OnInit {
     this.users = this.users.sort((a, b) => b.points - a.points);
     this.users = this.users.map((user, index) => ({...user, position: index + 1}));
     this.dataSource.data = this.users;
+    this.dataSource.paginator = this.paginator;
+  }
+
+  ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
 }
