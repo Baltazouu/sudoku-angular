@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {MatMenu, MatMenuItem} from "@angular/material/menu";
-import {HeaderComponent} from "../header/header.component";
+import {NavbarComponent} from "../components/navbar/navbar.component";
 
 @Component({
   selector: 'app-home-page',
@@ -8,7 +8,7 @@ import {HeaderComponent} from "../header/header.component";
   imports: [
     MatMenu,
     MatMenuItem,
-    HeaderComponent
+    NavbarComponent
   ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss'
