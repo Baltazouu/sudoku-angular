@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { MatCard, MatCardContent, MatCardHeader, MatCardTitle } from "@angular/material/card";
 import { MatError, MatFormField } from "@angular/material/form-field";
-import {MatButton, MatIconButton} from "@angular/material/button";
+import { MatButton, MatIconButton } from "@angular/material/button";
 import { MatInput } from "@angular/material/input";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { Router } from "@angular/router";
-import {UserService} from "../service/user.service";
+import { UserService } from "../service/user.service";
 
 @Component({
   selector: 'app-login-page',
@@ -36,7 +36,7 @@ export class LoginPageComponent {
   isPasswordHided: boolean = true;
 
   constructor(private router: Router,
-              private userService: UserService) {
+    private userService: UserService) {
   }
 
   loginForm: FormGroup = new FormGroup({
@@ -55,10 +55,10 @@ export class LoginPageComponent {
       return;
     }
 
-    if(this.userService.login(this.loginForm.value.login, this.loginForm.value.password)) {
+    if (this.userService.login(this.loginForm.value.login, this.loginForm.value.password)) {
       return this.router.navigateByUrl('')
     }
-    this.loginForm.setErrors({invalid_credentials: true});
+    this.loginForm.setErrors({ invalid_credentials: true });
     return;
   }
 }
