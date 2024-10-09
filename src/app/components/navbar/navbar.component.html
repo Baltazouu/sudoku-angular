@@ -1,7 +1,13 @@
 <mat-toolbar id="navbar">
-  <div id="user_infos">
-    <mat-icon style="vertical-align: middle">account_circle</mat-icon>
-    <button mat-button style="vertical-align: middle" (click)="logout()">{{user?.login}}</button>
+  <div class="navbar-content">
+    <div (click)="logout()">
+      <button mat-button extended>
+        <mat-icon class="icon">account_circle</mat-icon>
+        {{user?.login}}
+      </button>
+      <button mat-button routerLink="/" style="vertical-align: middle">Accueil</button>
+      <button mat-button routerLink="/rankings" style="vertical-align: middle">Classement</button>
+    </div>
   </div>
 
   <button mat-button [matMenuTriggerFor]="menu">Menu</button>
@@ -9,8 +15,6 @@
   <mat-menu #menu="matMenu">
     <button mat-menu-item>Sudoku</button>
     <button mat-menu-item disabled>Mot croisés</button>
-    <a routerLink="/rankings" mat-menu-item >Classement</a>
-    <a routerLink="/" mat-menu-item >Accueil</a>
     <button mat-menu-item (click)="logout()">Logout</button>
   </mat-menu>
 

@@ -1,6 +1,23 @@
-
 #navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  align-self: center
+}
+
+.navbar-content button,
+button {
+  font-size: 1.1rem;
+  background-color: transparent;
+}
+
+.navbar-content button:hover,
+button:hover {
+  background-color: rgb(164, 164, 255);
+}
+
+.navbar-content .icon {
+  width: auto;
+  height: 1.5rem;
+  font-size: 1.5rem;
 }
