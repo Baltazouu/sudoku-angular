@@ -16,8 +16,8 @@
   </button>
 
   <mat-menu #menu="matMenu">
-    <button mat-menu-item>Sudoku</button>
-    <button mat-menu-item disabled>Mot croisés</button>
+    <a routerLink="/sudoku" mat-menu-item>Sudoku</a>
+    <a mat-menu-item disabled>Mot croisés</a>
     <button mat-menu-item (click)="logout()">Logout</button>
   </mat-menu>
 

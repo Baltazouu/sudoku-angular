@@ -1,0 +1,11 @@
+mat-grid-tile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc;
+  font-size: 1.5em;
+}
+
+.filled {
+  background-color: lightgray;
+}
