@@ -1,3 +1,9 @@
+
+<mat-button-toggle-group (change)="changeTableSort()" [(ngModel)]="sortType" id="toggle-rank">
+  <mat-button-toggle value="points">Sort by Points</mat-button-toggle>
+  <mat-button-toggle value="streaks">Sort by Streak</mat-button-toggle>
+</mat-button-toggle-group>
+
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
   <ng-container matColumnDef="position">
