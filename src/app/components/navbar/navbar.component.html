@@ -1,7 +1,7 @@
 <mat-toolbar id="navbar">
   <div class="navbar-content">
-    <div (click)="logout()">
-      <button mat-button extended>
+    <div>
+      <button mat-button extended (click)="logout()">
         <mat-icon class="icon">account_circle</mat-icon>
         {{user?.login}}
       </button>
