@@ -10,6 +10,8 @@ import {
 } from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {ViewChild} from '@angular/core';
+import {MatButtonToggle, MatButtonToggleGroup} from "@angular/material/button-toggle";
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-user-table-rank',
@@ -25,7 +27,10 @@ import {ViewChild} from '@angular/core';
     MatCellDef,
     MatHeaderCellDef,
     MatHeaderRowDef,
-    MatRowDef
+    MatRowDef,
+    MatButtonToggle,
+    MatButtonToggleGroup,
+    FormsModule
   ],
   templateUrl: './user-table-rank.component.html',
   styleUrl: './user-table-rank.component.scss'
@@ -38,6 +43,8 @@ export class UserTableRankComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
+  sortType: string = 'points';
+
   ngOnInit() {
     this.users = this.users.sort((a, b) => b.points - a.points);
     this.users = this.users.map((user, index) => ({...user, position: index + 1}));
@@ -48,4 +55,13 @@ export class UserTableRankComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
+
+  changeTableSort(){
+    console.log(this.sortType);
+    if(this.sortType === 'points') {
+      this.dataSource.data = this.dataSource.data.sort((a, b) => b.points - a.points);
+    }
+    else {
+      this.dataSource.data = this.dataSource.data.sort((a, b) => b.streak - a.streak);}
+    }
 }
