@@ -5,7 +5,7 @@ import { MatAnchor } from "@angular/material/button";
 //Assets
 
 //Components
-import { NavbarComponent } from "../components/navbar/navbar.component";
+import { NavbarComponent } from "../../components/navbar/navbar.component";
 
 @Component({
   selector: 'app-not-found-page',

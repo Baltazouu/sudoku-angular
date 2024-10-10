@@ -1,7 +1,7 @@
 <div class="sudoku-row">
   @for (cell of row; track $index){
     @if (cell === 0){
-    <input type="number" min="1" max="9" maxlength="1" class="sudoku-cell" />
+    <input type="number" min="1" max="9" class="sudoku-cell" />
     }
     @else {
     <input type="number" value="{{cell}}" disabled class="sudoku-cell" />

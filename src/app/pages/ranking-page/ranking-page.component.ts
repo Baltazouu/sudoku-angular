@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {NavbarComponent} from "../components/navbar/navbar.component";
-import {UserService} from "../service/user.service";
-import {User} from "../model/user.interface";
-import {UserTableRankComponent} from "../components/user-table-rank/user-table-rank.component";
+import {NavbarComponent} from "../../components/navbar/navbar.component";
+import {UserService} from "../../services/user.service";
+import {User} from "../../model/user.interface";
+import {UserTableRankComponent} from "../../components/user-table-rank/user-table-rank.component";
 import {Observable} from "rxjs";
 import {AsyncPipe} from "@angular/common";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";

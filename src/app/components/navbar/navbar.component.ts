@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {MatToolbar} from "@angular/material/toolbar";
-import {UserService} from "../../service/user.service";
+import {UserService} from "../../services/user.service";
 import {User} from "../../model/user.interface";
 import {MatAnchor, MatButton} from "@angular/material/button";
 import {Router, RouterLink} from "@angular/router";

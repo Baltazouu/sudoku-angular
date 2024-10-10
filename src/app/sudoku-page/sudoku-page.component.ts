@@ -5,7 +5,7 @@ import {AsyncPipe, NgClass, NgForOf} from "@angular/common";
 import {MatFormField} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {SudokuRowComponent} from "../components/sudoku-row/sudoku-row.component";
-import {SudokuService} from "../service/sudoku.service";
+import {SudokuService} from "../services/sudoku.service";
 import {SudokuGrid} from "../model/sudoku-grid.interface";
 import {catchError, Observable, of} from "rxjs";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";

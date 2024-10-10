@@ -13,7 +13,7 @@ export class UserService {
 
     const login = localStorage.getItem('login');
     if (login) {
-      this.user = {login, password: login,streak:0,points:0};
+      this.user = {login, password: login,id:1,streak:0,points:0};
     }
   }
 
@@ -22,7 +22,7 @@ export class UserService {
   login(login: string, password: string): boolean {
     if (login === password) {
       localStorage.setItem('login', login);
-      this.user = {login, password, streak:0,points:0};
+      this.user = {login, password,id:1,streak:0,points:0};
       return true;
     }
     return false;
