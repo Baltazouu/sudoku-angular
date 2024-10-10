@@ -4,7 +4,7 @@ import { HomePageComponent } from "./pages/home-page/home-page.component";
 import { AuthGuard } from "./auth/auth-guard";
 import { NotFoundPageComponent } from "./pages/not-found-page/not-found-page.component";
 import { RankingPageComponent } from "./pages/ranking-page/ranking-page.component";
-import { SudokuPageComponent } from "./sudoku-page/sudoku-page.component";
+import { SudokuPageComponent } from "./pages/sudoku-page/sudoku-page.component";
 
 export const routes: Routes = [
 

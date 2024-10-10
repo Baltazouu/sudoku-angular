@@ -1,0 +1,42 @@
+<app-navbar></app-navbar>
+
+<div class="main-content">
+  <h1>{{currentDate | date:'fullDate' }}</h1>
+  <h2>Sudoku du jour</h2>
+
+
+  <div class="game-container">
+
+    <div class="sudoku-container">
+      <div id="sudoku-grid">
+        @if(sudokuGrid$ | async; as sudokuGrid){
+          @for(row of sudokuGrid.easy; track row){
+            <app-sudoku-row class="sudoku-row" [row]="row"></app-sudoku-row>
+          }
+        }
+        @else {
+          <mat-spinner></mat-spinner>
+        }
+      </div>
+    </div>
+
+    <mat-card id="sudoku-actions" appearance="outlined">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Actions</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image ngSrc="assets/mat-card-sudoku-image.jpg" alt="Sudoku" height="200" width="200">
+      <mat-card-content>
+        <p>
+          Nombre d'essais : {{checkString}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="onCheck()">Check</button>
+        <button mat-button [disabled]="isSendDisabled" >Envoyer</button>
+      </mat-card-actions>
+    </mat-card>
+
+
+</div>
+</div>
