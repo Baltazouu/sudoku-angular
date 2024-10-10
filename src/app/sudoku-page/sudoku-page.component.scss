@@ -1,11 +1,17 @@
-mat-grid-tile {
+.sudoku-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid #ccc;
-  font-size: 1.5em;
+  flex-direction: column;
+  border: 1.5px solid black;
 }
 
-.filled {
-  background-color: lightgray;
+.sudoku-row {
+  display: flex;
+}
+
+.sudoku-row:nth-of-type(3n) {
+  border-bottom: 1.5px solid black;
+}
+
+.sudoku-row:nth-of-type(3n + 1) {
+  border-top: 1.5px solid black;
 }
