@@ -7,8 +7,10 @@ import {MatInput} from "@angular/material/input";
 import {SudokuRowComponent} from "../components/sudoku-row/sudoku-row.component";
 import {SudokuService} from "../service/sudoku.service";
 import {SudokuGrid} from "../model/sudoku-grid.interface";
-import {Observable} from "rxjs";
+import {catchError, Observable, of} from "rxjs";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
+import {defaultGrid} from "../data/default-grid";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-sudoku-page',
@@ -34,20 +36,14 @@ export class SudokuPageComponent implements OnInit{
 
   constructor(private sudokuService:SudokuService) { }
 
-  // protected sudokuGrid: number[][] = [
-  //   [5, 3, 0, 0, 7, 0, 0, 0, 0],
-  //   [6, 0, 0, 1, 9, 5, 0, 0, 0],
-  //   [0, 9, 8, 0, 0, 0, 0, 6, 0],
-  //   [8, 0, 0, 0, 6, 0, 0, 0, 3],
-  //   [4, 0, 0, 8, 0, 3, 0, 0, 1],
-  //   [7, 0, 0, 0, 2, 0, 0, 0, 6],
-  //   [0, 6, 0, 0, 0, 0, 2, 8, 0],
-  //   [0, 0, 0, 4, 1, 9, 0, 0, 5],
-  //   [0, 0, 0, 0, 8, 0, 0, 7, 9]
-  // ];
 
   ngOnInit(): void {
-    this.sudokuGrid$ = this.sudokuService.findSudokuGrid()
+    this.sudokuGrid$ = this.sudokuService.findSudokuGrid().pipe(
+      catchError((err : HttpErrorResponse) =>{
+        console.log("error while loading sudoku grid");
+        return of(defaultGrid)
+      })
+    )
   }
 
 }

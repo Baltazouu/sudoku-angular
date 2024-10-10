@@ -20,7 +20,7 @@ export class UserService {
   user : User | null = null;
 
   login(login: string, password: string): boolean {
-    if (login == password) {
+    if (login === password) {
       localStorage.setItem('login', login);
       this.user = {login, password, streak:0,points:0};
       return true;
@@ -31,7 +31,6 @@ export class UserService {
   logout(): void {
     localStorage.removeItem('login');
   }
-
 
   findAll(): Observable<User[]> {
     return this.http.get<User[]>(`${ConfigService.API_URL}/users`);
