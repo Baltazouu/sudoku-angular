@@ -6,3 +6,13 @@
   align-items: center;
   flex-direction: row;
 }
+
+
+#last-seven-days {
+  width: 90%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
