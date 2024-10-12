@@ -69,7 +69,7 @@ export class SudokuPageComponent implements OnInit{
   ngOnInit(): void {
     this.sudokuGrid$ = this.sudokuService.findSudokuGrid().pipe(
       catchError((err : HttpErrorResponse) =>{
-        console.log("error while loading sudoku grid");
+        console.log(err.message);
         return of(defaultGrid)
       })
     )

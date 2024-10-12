@@ -10,8 +10,8 @@
   <h3>Last 7 Days :</h3>
 
   <div id="last-seven-days">
-    @for (days of getLastSevenDays(); track $index){
-      <app-streak-day [streakDate]="days" [currentDate]="currentDate" [isPlayed]="false" ></app-streak-day>
+    @for (streak of streaks; track $index){
+      <app-streak-day [streakDay]="streak.day" [currentDate]="currentDate" [isPlayed]="streak.isPlayed" ></app-streak-day>
     }
   </div>
 

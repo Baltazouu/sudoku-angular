@@ -27,7 +27,7 @@ import {MatIcon} from "@angular/material/icon";
 })
 export class NavbarComponent {
 
-  user : User | null = null;
+  user : User | undefined = undefined;
 
 
   constructor(private userService:UserService,

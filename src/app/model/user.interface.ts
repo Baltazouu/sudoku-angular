@@ -1,3 +1,4 @@
+import {Streak} from "./streak";
 
 export interface User {
   id:number;
@@ -5,4 +6,5 @@ export interface User {
   password:string;
   streak:number;
   points:number;
+  streaks:Streak[];
 }

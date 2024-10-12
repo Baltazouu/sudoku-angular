@@ -1,8 +1,6 @@
 <div class="streak-day">
 
-  @if(streakDate?.getDay() === currentDate?.getDay()){
-    <span class="today">{{streakDate | date:'EEEE'}} (Today)</span>
-  } @else { <span>{{streakDate | date:'EEEE'}}</span> }
+<span>{{streakDay}}</span>
   @if(isPlayed){
     <mat-icon class="succeed_button">check</mat-icon>
   }@else{

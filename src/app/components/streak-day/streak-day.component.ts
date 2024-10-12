@@ -14,7 +14,7 @@ import {MatIcon} from "@angular/material/icon";
 })
 export class StreakDayComponent {
 
-  @Input({required:true}) streakDate:Date | undefined;
+  @Input({required:true}) streakDay:string | undefined;
 
   @Input({required:true}) currentDate:Date | undefined;
 

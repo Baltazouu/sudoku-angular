@@ -9,20 +9,26 @@ import {ConfigService} from "./config.service";
 })
 export class UserService {
 
+  user : User | undefined;
+
   constructor(private http:HttpClient) {
 
     const login = localStorage.getItem('login');
     if (login) {
-      this.user = {login, password: login,id:1,streak:0,points:0};
+      // set current user with id 1
+      this.findById(1).subscribe(user => {
+        this.user = user;
+      })
     }
   }
-
-  user : User | null = null;
 
   login(login: string, password: string): boolean {
     if (login === password) {
       localStorage.setItem('login', login);
-      this.user = {login, password,id:1,streak:0,points:0};
+      // set current user with id 1
+      this.findById(1).subscribe(user => {
+        this.user = user;
+      })
       return true;
     }
     return false;

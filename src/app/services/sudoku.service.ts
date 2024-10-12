@@ -12,7 +12,7 @@ export class SudokuService {
   constructor(private readonly http:HttpClient) { }
 
   findSudokuGrid() : Observable<SudokuGrid>{
-    return this.http.get<SudokuGrid>(ConfigService.API_SUDOKU_URL + "/sudoku");
+    return this.http.get<SudokuGrid>(ConfigService.API_URL + "/sudoku/1");
   }
 
 }
