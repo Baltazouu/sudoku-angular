@@ -1,41 +1,39 @@
 import { Injectable } from '@angular/core';
 import {User} from "../model/user.interface";
-import {Observable} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {ConfigService} from "./config.service";
+import {LocalStorageService} from "./local-storage.service";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({providedIn: 'root'})
 export class UserService {
 
-  user : User | undefined;
+  private userSubject = new BehaviorSubject<User | undefined>(undefined);
+  public user$ = this.userSubject.asObservable();
 
-  constructor(private http:HttpClient) {
+  constructor(private http:HttpClient,
+              private localStorageService:LocalStorageService) {
 
-    const login = localStorage.getItem('login');
+    const login = this.localStorageService.getItem('login');
     if (login) {
       // set current user with id 1
-      this.findById(1).subscribe(user => {
-        this.user = user;
-      })
-    }
+      this.findById(1).subscribe(
+        user => {this.userSubject.next(user);})}
   }
 
   login(login: string, password: string): boolean {
     if (login === password) {
-      localStorage.setItem('login', login);
+      this.localStorageService.setItem('login', login);
       // set current user with id 1
-      this.findById(1).subscribe(user => {
-        this.user = user;
-      })
+      this.findById(1).subscribe(user => {this.userSubject.next(user);})
       return true;
     }
     return false;
   }
 
   logout(): void {
-    localStorage.removeItem('login');
+    this.localStorageService.removeItem('login');
+    this.userSubject.next(undefined);
   }
 
   findAll(): Observable<User[]> {

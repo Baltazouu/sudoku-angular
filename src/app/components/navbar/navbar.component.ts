@@ -7,6 +7,8 @@ import {Router, RouterLink} from "@angular/router";
 import {MatDrawerContainer} from "@angular/material/sidenav";
 import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
 import {MatIcon} from "@angular/material/icon";
+import {MatProgressSpinner} from "@angular/material/progress-spinner";
+import {AsyncPipe} from "@angular/common";
 
 @Component({
   selector: 'app-navbar',
@@ -20,21 +22,20 @@ import {MatIcon} from "@angular/material/icon";
     MatMenuTrigger,
     MatIcon,
     RouterLink,
-    MatAnchor
+    MatAnchor,
+    MatProgressSpinner,
+    AsyncPipe
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
 
-  user : User | undefined = undefined;
-
+  protected user$ = this.userService.user$;
 
   constructor(private userService:UserService,
               private router:Router) {
-    this.user  = this.userService.user
   }
-
 
   logout() {
     this.userService.logout();

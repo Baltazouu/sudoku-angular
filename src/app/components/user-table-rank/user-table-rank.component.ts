@@ -57,7 +57,6 @@ export class UserTableRankComponent implements OnInit, AfterViewInit {
   }
 
   changeTableSort() : void{
-    console.log(this.sortType);
     if(this.sortType === 'points') {
       this.dataSource.data = this.dataSource.data.sort((a, b) => b.points - a.points);
 

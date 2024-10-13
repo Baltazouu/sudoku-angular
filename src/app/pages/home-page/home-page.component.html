@@ -9,10 +9,16 @@
 
   <h3>Last 7 Days :</h3>
 
-  <div id="last-seven-days">
-    @for (streak of streaks; track $index){
-      <app-streak-day [streakDay]="streak.day" [currentDate]="currentDate" [isPlayed]="streak.isPlayed" ></app-streak-day>
-    }
-  </div>
+  @if(user$ | async; as user){
+    <div id="last-seven-days">
+      @for (streak of user.streaks; track $index){
+        <app-streak-day [streakDay]="streak.day" [currentDate]="currentDate" [isPlayed]="streak.isPlayed" ></app-streak-day>
+      }
+    </div>
+  } @else {
+    <mat-spinner></mat-spinner>
+  }
+
+
 
 </div>

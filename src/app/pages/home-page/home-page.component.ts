@@ -1,10 +1,10 @@
 import {Component} from '@angular/core';
 import {MatMenu, MatMenuItem} from "@angular/material/menu";
 import {NavbarComponent} from "../../components/navbar/navbar.component";
-import {DatePipe} from "@angular/common";
+import {AsyncPipe, DatePipe} from "@angular/common";
 import {StreakDayComponent} from "../../components/streak-day/streak-day.component";
 import {UserService} from "../../services/user.service";
-import {Streak} from "../../model/streak";
+import {MatProgressSpinner} from "@angular/material/progress-spinner";
 
 @Component({
   selector: 'app-home-page',
@@ -14,7 +14,9 @@ import {Streak} from "../../model/streak";
     MatMenuItem,
     NavbarComponent,
     DatePipe,
-    StreakDayComponent
+    StreakDayComponent,
+    AsyncPipe,
+    MatProgressSpinner
   ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss'
@@ -23,10 +25,9 @@ export class HomePageComponent {
 
   protected currentDate:Date = new Date();
 
-  protected streaks:Streak[] = [];
+  protected user$ = this.userService.user$;
 
   constructor(private readonly userService:UserService) {
-    this.streaks = this.userService.user?.streaks || [];
   }
 
 }
