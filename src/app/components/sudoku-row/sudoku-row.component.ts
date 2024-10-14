@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-sudoku-row',
@@ -7,11 +7,17 @@ import {Component, Input} from '@angular/core';
   templateUrl: './sudoku-row.component.html',
   styleUrl: './sudoku-row.component.scss'
 })
-export class SudokuRowComponent {
-
-  protected i = 0;
+export class SudokuRowComponent implements OnInit{
 
   @Input({required:true}) row: number[] = [];
+
+  originalRow: number[] = []
+
+  ngOnInit(){
+    this.originalRow = this.row.slice();
+  }
+
+
 
 
 }

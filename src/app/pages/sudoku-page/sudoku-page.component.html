@@ -7,10 +7,8 @@
 
   @if(sudokuGrid$ | async; as sudokuGrid){
     <div class="game-container">
-
       <div class="sudoku-container">
         <div id="sudoku-grid">
-
             @for(row of sudokuGrid.easy; track row){
               <app-sudoku-row class="sudoku-row" [row]="row"></app-sudoku-row>
             }
