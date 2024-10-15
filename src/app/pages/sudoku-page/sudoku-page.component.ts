@@ -28,6 +28,7 @@ import {MatChip, MatChipSet} from "@angular/material/chips";
 import {SudokuCell} from "../../model/sudoku-cell";
 import {SudokuSharedService} from "../../services/sudoku-shared.service";
 import {GameResultService} from "../../services/game-result.service";
+import {NgxSkeletonLoaderModule} from "ngx-skeleton-loader";
 
 @Component({
   selector: 'app-sudoku-page',
@@ -53,7 +54,8 @@ import {GameResultService} from "../../services/game-result.service";
     MatCardFooter,
     MatChipSet,
     MatChip,
-    NgOptimizedImage
+    NgOptimizedImage,
+    NgxSkeletonLoaderModule
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './sudoku-page.component.html',
@@ -72,6 +74,8 @@ export class SudokuPageComponent implements OnInit{
   protected currentDate:Date = new Date();
 
   isGridCorrect:boolean = false;
+
+  isGridSent:boolean = false;
 
   constructor(private sudokuService:SudokuService,
               private sudokuSharedService:SudokuSharedService,
@@ -98,21 +102,19 @@ export class SudokuPageComponent implements OnInit{
 
   onValueChange(event:{rowIndex:number,index:number,value:number}){
     this.gridFilledByUser[event.rowIndex][event.index].value = event.value;
-    this.sudokuSharedService.updateGrid(this.gridFilledByUser);
   }
 
   checkGrid() {
     this.gridFilledByUser = this.gridFilledByUser.map((row, rowIndex) => {
       return row.map((cell, cellIndex) => {
         if (!cell.isOriginal) {
-          cell.isCorrect = cell.value === this.sudokuGrid?.data[rowIndex][cellIndex];
+          cell.isCorrect = Number(cell.value) === this.sudokuGrid?.data[rowIndex][cellIndex];
         }
         return cell;
       });
     });
     this.sudokuSharedService.updateGrid(this.gridFilledByUser);
     this.isGridCorrect = this.gridFilledByUser.every(row => row.every(cell => cell.isCorrect));
-    console.log(this.isGridCorrect);
     this.checkNumber++;
     this.checkString += "X";
   }
@@ -123,9 +125,14 @@ export class SudokuPageComponent implements OnInit{
         date: this.currentDate,
         playerName: "Player",
         clues: this.checkNumber
-      }).subscribe((result) => {
-
-      })
+      }).subscribe({
+        next: () => {
+          this.isGridSent = true;
+      },
+        error: (err) => {
+          console.log(err.message);
+        }
+      });
     }
   }
 

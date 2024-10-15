@@ -1,14 +1,12 @@
 <div class="sudoku-row">
   @for (cell of sudokuRow; track $index){
     <input
-      type="number"
+      type="text" maxlength="1"
+      oninput="this.value=this.value.replace(/[^0-9]/g,'');"
       [(ngModel)]="cell.value"
-      [ngClass]="getCellClass(cell)"
+      [ngClass]="cellClasses[$index]"
       [disabled]="cell.isOriginal || cell.isCorrect"
       (ngModelChange)="onValueChange($index, cell.value)"
     />
   }
-  <!-- //'incorrect': !cell.isCorrect && cell.value !== null && !cell.isOriginal -->
-
-
 </div>

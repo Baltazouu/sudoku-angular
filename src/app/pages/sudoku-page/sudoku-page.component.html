@@ -30,8 +30,23 @@
           </p>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-button [disabled]="isGridCorrect" (click)="checkGrid()">Check</button>
-          <button mat-button [disabled]="!isGridCorrect" (click)="sendGameResult()">Envoyer</button>
+          @if(!isGridSent){
+            <button mat-button [disabled]="isGridCorrect" (click)="checkGrid()">Check</button>
+            <button mat-button [disabled]="!isGridCorrect" (click)="sendGameResult()">Envoyer</button>
+          } @else {
+            <!-- afficher un effet de chargement -->
+              @defer {
+                <p>Résultat soumis !</p>
+              } @placeholder (minimum 500ms){
+                <ngx-skeleton-loader [theme]="{
+                  height: '30px',
+                  width: '200px',
+                }">
+                </ngx-skeleton-loader>
+              }
+            <!-- afficher un effet de chargement -->
+          }
+
         </mat-card-actions>
       </mat-card>
   </div>

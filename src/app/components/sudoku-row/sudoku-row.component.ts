@@ -18,7 +18,8 @@ export class SudokuRowComponent implements OnInit {
 
   @Input({required:true}) rowIndex:number = 0;
 
-  protected sudokuRow : SudokuCell[] = []
+  protected sudokuRow : SudokuCell[] = [];
+  protected cellClasses: { [key: number]: any } = {};
 
   @Output() valueChange = new EventEmitter<{rowIndex:number,index:number,value:number}>();
 
@@ -28,7 +29,10 @@ export class SudokuRowComponent implements OnInit {
   ngOnInit() {
     this.sudokuSharedService.getGrid().subscribe((grid:SudokuCell[][])=>{
       this.sudokuRow = grid[this.rowIndex];
-    })
+      this.sudokuRow.forEach((cell, index) => {
+        this.cellClasses[index] = this.getCellClass(cell);
+      });
+    });
   }
 
   onValueChange(index:number,value:number|undefined){
@@ -37,11 +41,14 @@ export class SudokuRowComponent implements OnInit {
     }
   }
 
-  getCellClass(cell: SudokuCell) {
+
+
+  private getCellClass(cell: SudokuCell) {
     return {
       'sudoku-cell': true,
       'bold': !cell.isOriginal,
       'correct': cell.isCorrect && !cell.isOriginal,
+      'incorrect': (cell.value && cell.value > 0) && (!cell.isCorrect && !cell.isOriginal) ,
     };
   }
 }
