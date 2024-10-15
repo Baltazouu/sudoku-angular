@@ -19,3 +19,16 @@
 .sudoku-cell:nth-child(3n) {
     border-right: 1.5px solid black;
 }
+
+
+.correct{
+  color:green;
+}
+
+.incorrect{
+  color:red;
+}
+
+.bold{
+  font-weight: bold;
+}

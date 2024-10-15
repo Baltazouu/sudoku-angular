@@ -6,6 +6,7 @@ import {UserTableRankComponent} from "../../components/user-table-rank/user-tabl
 import {Observable} from "rxjs";
 import {AsyncPipe} from "@angular/common";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
+import {NgxSkeletonLoaderModule} from "ngx-skeleton-loader";
 
 @Component({
   selector: 'app-ranking-page',
@@ -14,7 +15,8 @@ import {MatProgressSpinner} from "@angular/material/progress-spinner";
     NavbarComponent,
     UserTableRankComponent,
     AsyncPipe,
-    MatProgressSpinner
+    MatProgressSpinner,
+    NgxSkeletonLoaderModule
   ],
   templateUrl: './ranking-page.component.html',
   styleUrl: './ranking-page.component.scss'

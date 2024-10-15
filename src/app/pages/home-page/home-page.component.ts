@@ -5,6 +5,7 @@ import {AsyncPipe, DatePipe} from "@angular/common";
 import {StreakDayComponent} from "../../components/streak-day/streak-day.component";
 import {UserService} from "../../services/user.service";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
+import {NgxSkeletonLoaderModule} from "ngx-skeleton-loader";
 
 @Component({
   selector: 'app-home-page',
@@ -16,7 +17,8 @@ import {MatProgressSpinner} from "@angular/material/progress-spinner";
     DatePipe,
     StreakDayComponent,
     AsyncPipe,
-    MatProgressSpinner
+    MatProgressSpinner,
+    NgxSkeletonLoaderModule
   ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss'

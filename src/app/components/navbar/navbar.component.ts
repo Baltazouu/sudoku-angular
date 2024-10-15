@@ -9,6 +9,7 @@ import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
 import {MatIcon} from "@angular/material/icon";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {AsyncPipe} from "@angular/common";
+import {NgxSkeletonLoaderModule} from "ngx-skeleton-loader";
 
 @Component({
   selector: 'app-navbar',
@@ -24,7 +25,8 @@ import {AsyncPipe} from "@angular/common";
     RouterLink,
     MatAnchor,
     MatProgressSpinner,
-    AsyncPipe
+    AsyncPipe,
+    NgxSkeletonLoaderModule
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'

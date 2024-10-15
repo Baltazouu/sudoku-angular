@@ -2,11 +2,13 @@
   <div class="navbar-content">
     <div>
       <button mat-button extended (click)="logout()">
+        <div class="item">
+        </div>
         <mat-icon class="icon">account_circle</mat-icon>
         @if(user$ | async; as user){
           {{user.login}}
         } @else {
-          <mat-spinner [diameter]="40"></mat-spinner>
+          <mat-spinner [diameter]="20"></mat-spinner>
         }
 
       </button>

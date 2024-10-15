@@ -4,13 +4,16 @@
   <h1>{{currentDate | date:'fullDate' }}</h1>
   <h2>Sudoku du jour</h2>
 
-
-  @if(sudokuGrid$ | async; as sudokuGrid){
+  @if(sudokuGrid){
     <div class="game-container">
       <div class="sudoku-container">
         <div id="sudoku-grid">
-            @for(row of sudokuGrid.easy; track row){
-              <app-sudoku-row class="sudoku-row" [row]="row"></app-sudoku-row>
+            @for(row of sudokuGrid.easy; track $index){
+              <app-sudoku-row
+                class="sudoku-row"
+                [rowIndex]="$index"
+                (valueChange)="onValueChange($event)"
+              ></app-sudoku-row>
             }
         </div>
       </div>
@@ -27,8 +30,8 @@
           </p>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-button (click)="onCheck()">Check</button>
-          <button mat-button [disabled]="isSendDisabled" >Envoyer</button>
+          <button mat-button [disabled]="isGridCorrect" (click)="checkGrid()">Check</button>
+          <button mat-button [disabled]="!isGridCorrect" (click)="sendGameResult()">Envoyer</button>
         </mat-card-actions>
       </mat-card>
   </div>

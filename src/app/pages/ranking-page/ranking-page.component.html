@@ -8,6 +8,15 @@
     <app-user-table-rank [users]="users"></app-user-table-rank>
   }
   @else {
-    <mat-spinner></mat-spinner>
+
+      <ngx-skeleton-loader class="loader"
+        count="5"
+        [theme]="{
+        'border-radius': '5px',
+        height: '50px',
+        'background-color': 'lightgray',
+        border: '1px solid white'
+      }">
+      </ngx-skeleton-loader>
   }
 </div>

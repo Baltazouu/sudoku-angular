@@ -1,10 +1,14 @@
 <div class="sudoku-row">
-  @for (cell of row; track $index){
-    @if (cell === 0){
-    <input type="number" min="1" max="9" class="sudoku-cell" />
-    }
-    @else {
-    <input type="number" value="{{cell}}" disabled class="sudoku-cell" />
-    }
+  @for (cell of sudokuRow; track $index){
+    <input
+      type="number"
+      [(ngModel)]="cell.value"
+      [ngClass]="getCellClass(cell)"
+      [disabled]="cell.isOriginal || cell.isCorrect"
+      (ngModelChange)="onValueChange($index, cell.value)"
+    />
   }
+  <!-- //'incorrect': !cell.isCorrect && cell.value !== null && !cell.isOriginal -->
+
+
 </div>
