@@ -41,14 +41,12 @@ export class SudokuRowComponent implements OnInit {
     }
   }
 
-
-
   private getCellClass(cell: SudokuCell) {
     return {
       'sudoku-cell': true,
       'bold': !cell.isOriginal,
       'correct': cell.isCorrect && !cell.isOriginal,
-      'incorrect': (cell.value && cell.value > 0) && (!cell.isCorrect && !cell.isOriginal) ,
+      'incorrect': (cell.value && cell.value > 0) && (!cell.isCorrect && !cell.isOriginal)
     };
   }
 }
