@@ -24,14 +24,9 @@
           <mat-card-title>Actions</mat-card-title>
         </mat-card-header>
         <img mat-card-image ngSrc="assets/mat-card-sudoku-image.jpg" alt="Sudoku" height="200" width="200">
-        <mat-card-content>
-          <p>
-            Nombre d'essais : {{checkString}}
-          </p>
-        </mat-card-content>
         <mat-card-actions>
           @if(!isGridSent){
-            <button mat-button [disabled]="isGridCorrect" (click)="checkGrid()">Check</button>
+            <button mat-button [disabled]="isGridCorrect" (click)="checkGrid()">Vérifier</button>
             <button mat-button [disabled]="!isGridCorrect" (click)="sendGameResult()">Envoyer</button>
           } @else {
             <!-- afficher un effet de chargement -->
@@ -48,6 +43,9 @@
           }
 
         </mat-card-actions>
+        <mat-card-footer>
+          <p>Nombre d'essais : {{checkString}}</p>
+        </mat-card-footer>
       </mat-card>
   </div>
   }

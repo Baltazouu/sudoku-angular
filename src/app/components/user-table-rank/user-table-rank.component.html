@@ -1,7 +1,7 @@
 
 <mat-button-toggle-group (change)="changeTableSort()" [(ngModel)]="sortType" id="toggle-rank">
-  <mat-button-toggle value="points">Sort by Points</mat-button-toggle>
-  <mat-button-toggle value="streaks">Sort by Streak</mat-button-toggle>
+  <mat-button-toggle value="points">Classement par points</mat-button-toggle>
+  <mat-button-toggle value="streaks">Classement par série</mat-button-toggle>
 </mat-button-toggle-group>
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
@@ -22,7 +22,7 @@
   </ng-container>
 
   <ng-container matColumnDef="streak">
-    <th mat-header-cell *matHeaderCellDef> Streak </th>
+    <th mat-header-cell *matHeaderCellDef> Série </th>
     <td mat-cell *matCellDef="let user"> {{user.streak}} </td>
   </ng-container>
 
