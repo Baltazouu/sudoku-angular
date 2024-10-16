@@ -3,7 +3,7 @@
 <div class="main-content">
   <h1>Sudoku du {{currentDate | date:'shortDate' }}</h1>
 
-  <mat-form-field style="width: 20%">
+  <mat-form-field style="width: 20vh">
     <mat-label>Difficulté</mat-label>
     <mat-select [(ngModel)]="gridLevel" (selectionChange)="setGridByDifficulty()">
       <mat-option value="easy">Facile</mat-option>
@@ -28,10 +28,9 @@
 
       <mat-card id="sudoku-actions" appearance="outlined">
         <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
           <mat-card-title>Actions</mat-card-title>
         </mat-card-header>
-        <img mat-card-image ngSrc="assets/mat-card-sudoku-image.jpg" alt="Sudoku" height="200" width="200">
+        <img src="assets/mat-card-sudoku-image.jpg" alt="Sudoku" style="width: 60%">
         <mat-card-actions>
           @if(!isGridSent){
             <button mat-button [disabled]="isGridCorrect" (click)="checkGrid()">Vérifier</button>
@@ -52,7 +51,7 @@
 
         </mat-card-actions>
         <mat-card-footer>
-          <p>Nombre d'essais : {{checkNumber}}</p>
+          Nombre d'essais : {{checkNumber}}
         </mat-card-footer>
       </mat-card>
   </div>

@@ -31,6 +31,7 @@ import {GameResultService} from "../../services/game-result.service";
 import {NgxSkeletonLoaderModule} from "ngx-skeleton-loader";
 import {MatOption, MatSelect} from "@angular/material/select";
 import {FormsModule} from "@angular/forms";
+import {MatIcon} from "@angular/material/icon";
 
 @Component({
   selector: 'app-sudoku-page',
@@ -60,7 +61,8 @@ import {FormsModule} from "@angular/forms";
     NgxSkeletonLoaderModule,
     MatSelect,
     MatOption,
-    FormsModule
+    FormsModule,
+    MatIcon
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './sudoku-page.component.html',
