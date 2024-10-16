@@ -1,8 +1,16 @@
 <app-navbar></app-navbar>
 
 <div class="main-content">
-  <h1>{{currentDate | date:'fullDate' }}</h1>
-  <h2>Sudoku du jour</h2>
+  <h1>Sudoku du {{currentDate | date:'shortDate' }}</h1>
+
+  <mat-form-field style="width: 20%">
+    <mat-label>Difficulté</mat-label>
+    <mat-select [(ngModel)]="gridLevel" (selectionChange)="setGridByDifficulty()">
+      <mat-option value="easy">Facile</mat-option>
+      <mat-option value="medium">Moyen</mat-option>
+      <mat-option value="hard">Difficile</mat-option>
+    </mat-select>
+  </mat-form-field>
 
   @if(sudokuGrid){
     <div class="game-container">
@@ -44,7 +52,7 @@
 
         </mat-card-actions>
         <mat-card-footer>
-          <p>Nombre d'essais : {{checkString}}</p>
+          <p>Nombre d'essais : {{checkNumber}}</p>
         </mat-card-footer>
       </mat-card>
   </div>

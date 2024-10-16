@@ -1,5 +1,5 @@
-## This dockerfile needs to generate build of application
 ## Run ng build before running this dockerfile
+## This dockerfile needs builds files of pplication
 FROM nginx:alpine
 
 WORKDIR /usr/share/nginx/html

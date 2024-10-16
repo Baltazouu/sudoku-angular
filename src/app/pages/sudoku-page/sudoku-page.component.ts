@@ -29,6 +29,8 @@ import {SudokuCell} from "../../model/sudoku-cell";
 import {SudokuSharedService} from "../../services/sudoku-shared.service";
 import {GameResultService} from "../../services/game-result.service";
 import {NgxSkeletonLoaderModule} from "ngx-skeleton-loader";
+import {MatOption, MatSelect} from "@angular/material/select";
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-sudoku-page',
@@ -55,7 +57,10 @@ import {NgxSkeletonLoaderModule} from "ngx-skeleton-loader";
     MatChipSet,
     MatChip,
     NgOptimizedImage,
-    NgxSkeletonLoaderModule
+    NgxSkeletonLoaderModule,
+    MatSelect,
+    MatOption,
+    FormsModule
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './sudoku-page.component.html',
@@ -69,7 +74,7 @@ export class SudokuPageComponent implements OnInit{
 
   protected checkNumber:number = 0;
 
-  protected checkString:string = "";
+  protected gridLevel = "easy";
 
   protected currentDate:Date = new Date();
 
@@ -88,14 +93,8 @@ export class SudokuPageComponent implements OnInit{
         return of(defaultGrid)
       })
     ).subscribe((grid:SudokuGrid) => {
-        this.gridFilledByUser = grid.easy.map(row => row.map(cell => {
-          return {
-            isOriginal: cell !== 0,
-            value: cell === 0 ? undefined : cell,
-            isCorrect: cell != 0
-          }
-        }));
         this.sudokuGrid = grid;
+        this.setGridByDifficulty();
         this.sudokuSharedService.updateGrid(this.gridFilledByUser);
       })
   }
@@ -116,7 +115,6 @@ export class SudokuPageComponent implements OnInit{
     this.sudokuSharedService.updateGrid(this.gridFilledByUser);
     this.isGridCorrect = this.gridFilledByUser.every(row => row.every(cell => cell.isCorrect));
     this.checkNumber++;
-    this.checkString += "X";
   }
 
   sendGameResult(){
@@ -134,6 +132,31 @@ export class SudokuPageComponent implements OnInit{
         }
       });
     }
+  }
+
+  setGridByDifficulty(){
+    console.log(this.gridLevel);
+    let grid :number[][]|undefined;
+    switch (this.gridLevel) {
+      case "medium":
+        grid = this.sudokuGrid?.medium
+         break;
+      case "hard":
+        grid = this.sudokuGrid?.hard
+        break;
+      default: // easy
+        grid = this.sudokuGrid?.easy
+        break;
+    }
+    this.gridFilledByUser = grid?.map(row => row.map(cell => {
+      return {
+        isOriginal: cell !== 0,
+        value: cell === 0 ? undefined : cell,
+        isCorrect: cell != 0
+      }
+    })) || [];
+    this.checkNumber = 0;
+    this.sudokuSharedService.updateGrid(this.gridFilledByUser);
   }
 
 
