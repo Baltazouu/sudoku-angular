@@ -39,7 +39,7 @@ export class NavbarComponent {
               private router:Router) {
   }
 
-  logout() {
+  logout() : Promise<Boolean> {
     this.userService.logout();
     return this.router.navigateByUrl('/login')
   }

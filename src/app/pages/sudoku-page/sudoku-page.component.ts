@@ -119,7 +119,7 @@ export class SudokuPageComponent implements OnInit{
     this.checkNumber++;
   }
 
-  sendGameResult(){
+  sendGameResult() : void{
     if(this.isGridCorrect){
       this.gameResultService.sendGameResult({
         date: this.currentDate,
@@ -136,7 +136,7 @@ export class SudokuPageComponent implements OnInit{
     }
   }
 
-  setGridByDifficulty(){
+  setGridByDifficulty() : void{
     let grid :number[][]|undefined;
     switch (this.gridLevel) {
       case "medium":

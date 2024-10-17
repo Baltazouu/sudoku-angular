@@ -28,7 +28,7 @@ export class RankingPageComponent implements OnInit{
   constructor(private readonly userService: UserService) {
   }
 
-  ngOnInit() {
+  ngOnInit() : void {
     this.users$ = this.userService.findAll();
   }
 

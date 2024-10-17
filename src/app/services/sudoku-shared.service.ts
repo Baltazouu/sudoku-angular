@@ -9,7 +9,7 @@ export class SudokuSharedService {
 
   private gridSubject = new BehaviorSubject<SudokuCell[][]>([]);
 
-  updateGrid(grid:SudokuCell[][]){
+  updateGrid(grid:SudokuCell[][]) : void{
     this.gridSubject.next(grid);
   }
 
