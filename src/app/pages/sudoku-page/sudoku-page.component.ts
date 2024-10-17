@@ -137,7 +137,6 @@ export class SudokuPageComponent implements OnInit{
   }
 
   setGridByDifficulty(){
-    console.log(this.gridLevel);
     let grid :number[][]|undefined;
     switch (this.gridLevel) {
       case "medium":
