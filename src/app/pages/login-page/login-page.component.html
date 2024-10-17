@@ -7,10 +7,10 @@
     <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <mat-form-field class="input" appearance="outline">
         <mat-label>Login</mat-label>
-        <input class="form-input" type="email" matInput placeholder="Placeholder" formControlName="login" />
+        <input class="form-input" type="email" matInput formControlName="login" />
         <mat-icon matSuffix>email</mat-icon>
         @if (loginForm.get('login')?.hasError('required')) {
-        <mat-error>Email is <strong>required</strong></mat-error>
+        <mat-error>Email <strong>requis</strong></mat-error>
         }
       </mat-form-field>
       <mat-form-field class="input" appearance="outline">
@@ -21,14 +21,11 @@
         </button>
         <mat-icon matSuffix>lock</mat-icon>
         @if (loginForm.get('password')?.hasError('required') ) {
-        <mat-error>Password is <strong>required</strong></mat-error>
-        }
-        @if (loginForm.hasError('required')) {
-        <mat-error>Password is <strong>required</strong></mat-error>
+        <mat-error>Mot de passe <strong>requis</strong></mat-error>
         }
       </mat-form-field>
       @if (loginForm.hasError('invalid_credentials')) {
-      <p class="form-error">les identifiants sont incorrects</p>
+      <p class="form-error">Identifiants incorrects</p>
       }
       <button class="buttonform" type="submit" mat-flat-button [disabled]='loginForm.invalid'>
         Se connecter

@@ -5,13 +5,13 @@
   <h1>{{currentDate | date:'fullDate' }}</h1>
 
 
-  <h2>Streaks Sudoku</h2>
+  <h2>Séries de Sudoku</h2>
 
-  <h3>Last 7 Days :</h3>
+  <h3>7 Derniers jours :</h3>
 
   @if(user$ | async; as user){
     <div id="last-seven-days">
-      @for (streak of user.streaks; track $index){
+      @for (streak of user.streaks.reverse(); track $index){
         <app-streak-day [streakDay]="streak.day" [currentDate]="currentDate" [isPlayed]="streak.isPlayed" ></app-streak-day>
       }
     </div>
