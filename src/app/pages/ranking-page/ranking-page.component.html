@@ -1,0 +1,22 @@
+<app-navbar></app-navbar>
+
+<div class="main-content">
+
+  <h1>Classement :</h1>
+
+  @if(users$ | async; as users){
+    <app-user-table-rank [users]="users"></app-user-table-rank>
+  }
+  @else {
+
+      <ngx-skeleton-loader class="loader"
+        count="5"
+        [theme]="{
+        'border-radius': '5px',
+        height: '50px',
+        'background-color': 'lightgray',
+        border: '1px solid white'
+      }">
+      </ngx-skeleton-loader>
+  }
+</div>

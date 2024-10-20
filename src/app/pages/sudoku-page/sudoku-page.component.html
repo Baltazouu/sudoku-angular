@@ -1,0 +1,62 @@
+<app-navbar></app-navbar>
+
+<div class="main-content">
+  <h1>Sudoku du {{currentDate | date:'shortDate' }}</h1>
+
+  <mat-form-field style="width: 20vh">
+    <mat-label>Difficulté</mat-label>
+    <mat-select [(ngModel)]="gridLevel" (selectionChange)="setGridByDifficulty()">
+      <mat-option value="easy">Facile</mat-option>
+      <mat-option value="medium">Moyen</mat-option>
+      <mat-option value="hard">Difficile</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  @if(sudokuGrid){
+    <div class="game-container">
+      <div class="sudoku-container">
+        <div id="sudoku-grid">
+            @for(row of sudokuGrid.easy; track $index){
+              <app-sudoku-row
+                class="sudoku-row"
+                [rowIndex]="$index"
+                (valueChange)="onValueChange($event)"
+              ></app-sudoku-row>
+            }
+        </div>
+      </div>
+
+      <mat-card id="sudoku-actions" appearance="outlined">
+        <mat-card-header>
+          <mat-card-title>Actions</mat-card-title>
+        </mat-card-header>
+        <img src="assets/mat-card-sudoku-image.jpg" alt="Sudoku" style="width: 60%">
+        <mat-card-actions>
+          @if(!isGridSent){
+            <button mat-button [disabled]="isGridCorrect" (click)="checkGrid()">Vérifier</button>
+            <button mat-button [disabled]="!isGridCorrect" (click)="sendGameResult()">Envoyer</button>
+          } @else {
+            <!-- afficher un effet de chargement -->
+              @defer {
+                <p>Résultat soumis !</p>
+              } @placeholder (minimum 500ms){
+                <ngx-skeleton-loader [theme]="{
+                  height: '30px',
+                  width: '200px',
+                }">
+                </ngx-skeleton-loader>
+              }
+            <!-- afficher un effet de chargement -->
+          }
+
+        </mat-card-actions>
+        <mat-card-footer>
+          <mat-chip>Nombre d'essais : {{checkNumber}}</mat-chip>
+        </mat-card-footer>
+      </mat-card>
+  </div>
+  }
+  @else {
+    <mat-spinner></mat-spinner>
+  }
+</div>

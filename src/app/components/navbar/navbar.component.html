@@ -2,8 +2,15 @@
   <div class="navbar-content">
     <div>
       <button mat-button extended (click)="logout()">
+        <div class="item">
+        </div>
         <mat-icon class="icon">account_circle</mat-icon>
-        {{user?.login}}
+        @if(user$ | async; as user){
+          {{user.login}}
+        } @else {
+          <mat-spinner [diameter]="20"></mat-spinner>
+        }
+
       </button>
       <button mat-button routerLink="/" style="vertical-align: middle">Accueil</button>
       <button mat-button routerLink="/rankings" style="vertical-align: middle">Classement</button>
@@ -16,8 +23,8 @@
   </button>
 
   <mat-menu #menu="matMenu">
-    <button mat-menu-item>Sudoku</button>
-    <button mat-menu-item disabled>Mot croisés</button>
+    <a routerLink="/sudoku" mat-menu-item>Sudoku</a>
+    <a mat-menu-item disabled>Mot croisés</a>
     <button mat-menu-item (click)="logout()">Logout</button>
   </mat-menu>
 

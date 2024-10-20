@@ -1,0 +1,23 @@
+<app-navbar></app-navbar>
+
+<div class="main-content">
+
+  <h1>{{currentDate | date:'fullDate' }}</h1>
+
+
+  <h2>Séries de Sudoku</h2>
+
+  <h3>7 Derniers jours :</h3>
+
+  @if(user$ | async; as user){
+    <div id="last-seven-days">
+      @for (streak of user.streaks.reverse(); track $index){
+        <app-streak-day [streakDay]="streak.day" [currentDate]="currentDate" [isPlayed]="streak.isPlayed" ></app-streak-day>
+      }
+    </div>
+  } @else {
+    <mat-spinner></mat-spinner>
+
+  }
+
+</div>

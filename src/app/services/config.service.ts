@@ -7,5 +7,4 @@ import {Injectable} from "@angular/core";
 export class ConfigService {
 
   public static readonly API_URL = ' https://664ba07f35bbda10987d9f99.mockapi.io/api';
-
 }
